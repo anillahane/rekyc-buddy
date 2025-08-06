@@ -5,6 +5,7 @@ import { User, Phone, Mail, MapPin, Calendar, AlertCircle, CheckCircle } from "l
 
 interface CustomerData {
   name: string;
+  dateOfBirth: string;
   mobile: string;
   email: string;
   customerId: string;
@@ -21,6 +22,7 @@ const CustomerOverview = ({ onStartRekyc }: { onStartRekyc: () => void }) => {
   // Mock customer data
   const customer: CustomerData = {
     name: "Rajesh Kumar",
+    dateOfBirth: "15/08/1985",
     mobile: "+91 9876543210",
     email: "rajesh.kumar@email.com",
     customerId: "VFIN12345678",
@@ -82,6 +84,10 @@ const CustomerOverview = ({ onStartRekyc }: { onStartRekyc: () => void }) => {
             <div>
               <p className="font-semibold text-lg">{customer.name}</p>
               <p className="text-sm text-muted-foreground">Customer ID: {customer.customerId}</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Calendar className="w-4 h-4 text-muted-foreground" />
+              <span>DOB: {customer.dateOfBirth}</span>
             </div>
             <div className="flex items-center space-x-2">
               <Phone className="w-4 h-4 text-muted-foreground" />
