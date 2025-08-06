@@ -46,7 +46,7 @@ const Header = ({ onNavigate }: HeaderProps) => {
           >
             Queries & Complaints
           </button>
-          <Button variant="outline" size="sm" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+          <Button variant="secondary" size="sm" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 hover:text-primary">
             <LogOut className="w-4 h-4 mr-2" />
             Logout
           </Button>
