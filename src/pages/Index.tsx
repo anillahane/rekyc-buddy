@@ -1,12 +1,45 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import Header from "@/components/Header";
+import CustomerOverview from "@/components/CustomerOverview";
+import RekycProcess from "@/components/RekycProcess";
+import QueriesComplaints from "@/components/QueriesComplaints";
+
+type View = "overview" | "rekyc" | "queries";
 
 const Index = () => {
+  const [currentView, setCurrentView] = useState<View>("overview");
+
+  const handleStartRekyc = () => {
+    setCurrentView("rekyc");
+  };
+
+  const handleCompleteRekyc = () => {
+    setCurrentView("overview");
+  };
+
+  const renderContent = () => {
+    switch (currentView) {
+      case "overview":
+        return <CustomerOverview onStartRekyc={handleStartRekyc} />;
+      case "rekyc":
+        return <RekycProcess onComplete={handleCompleteRekyc} />;
+      case "queries":
+        return <QueriesComplaints />;
+      default:
+        return <CustomerOverview onStartRekyc={handleStartRekyc} />;
+    }
+  };
+
+  const handleNavigation = (view: string) => {
+    setCurrentView(view as View);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header onNavigate={handleNavigation} />
+      <main className="container mx-auto px-4 py-8">
+        {renderContent()}
+      </main>
     </div>
   );
 };
